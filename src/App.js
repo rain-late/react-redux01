@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { addGun, rmGun, addGunAsync } from "./index.redux";
 
+@connect(
+  (state) => ({num: state}),
+  { addGun, rmGun, addGunAsync }
+)
 class App extends Component {
   render() {
     return (
@@ -15,8 +19,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({num: state});
-const actionCreates = { addGun, rmGun, addGunAsync };
-App = connect(mapStateToProps, actionCreates)(App);
+// const mapStateToProps = (state) => ({num: state});
+// const actionCreates = { addGun, rmGun, addGunAsync };
+// App = connect(mapStateToProps, actionCreates)(App);
 
 export default App;
