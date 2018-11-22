@@ -1,28 +1,22 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { connect } from "react-redux";
+import { addGun, rmGun, addGunAsync } from "./index.redux";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <h1>现在有机枪 {this.props.num} 把</h1>
+        <button onClick={this.props.addGun}>加机关枪</button>
+        <button onClick={this.props.rmGun}>减机关枪</button>
+        <button onClick={this.props.addGunAsync}>过几天再给</button>
       </div>
-    );
+    )
   }
 }
+
+const mapStateToProps = (state) => ({num: state});
+const actionCreates = { addGun, rmGun, addGunAsync };
+App = connect(mapStateToProps, actionCreates)(App);
 
 export default App;
